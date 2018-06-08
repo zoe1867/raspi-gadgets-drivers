@@ -20,7 +20,8 @@ import matplotlib.pyplot as plt
 
 
 def getcloseprice(sNum):
-    sdf = ts.get_hist_data(sNum,start='2018-01-01',end='2018-05-22')
+    now = datetime.datetime.now().strftime("%Y-%m-%d")
+    sdf = ts.get_hist_data(sNum,start='2018-01-01',end=now)
     sdf1 = sdf.sort_index()
     spd = sdf1['close']
     plt.plot(spd)
