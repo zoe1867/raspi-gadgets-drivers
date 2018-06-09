@@ -1,11 +1,11 @@
-import DH11Class
-import Lcd1602Class
+import DH11cs
+import Lcd1602cs
   
 if __name__ == "__main__":
-    dh11 = DH11Class.DH11DEV()
+    dh11 = DH11cs.DH11DEV()
     dh11.get_temp()
 
-    lcd=Lcd1602Class.LCD1602(0x27, 1)
+    lcd=Lcd1602cs.LCD1602(0x27, 1)
     lcd.init_lcd()
     str1 = "Temperature: " + str(dh11.temperature)
     str2 = "humidity:    " + str(dh11.humidity)
