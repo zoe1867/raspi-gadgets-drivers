@@ -180,7 +180,9 @@ class LED:
             time.sleep(0.04)                             
 
     def close(self):
-        GPIO.cleanup()
+        GPIO.cleanup(self.Max7219_CLK)
+        GPIO.cleanup(self.Max7219_CS)
+        GPIO.cleanup(self.Max7219_DIN)
 
 if __name__ == "__main__":
 

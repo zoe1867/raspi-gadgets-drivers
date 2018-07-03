@@ -10,6 +10,7 @@ if __name__ == "__main__":
 
     try:    
         dh11 = DH11.DH11()
+        dh11.init()
         dh11.get_temp()
 
         lcd=Lcd1602_Pcf8574.LCD(0x27, 1)
@@ -21,5 +22,5 @@ if __name__ == "__main__":
         lcd.display_string(0, 0, str1)
         lcd.display_string(0, 1, str2)
     finally:
-        GPIO.cleanup()
+        dh11.close()
 

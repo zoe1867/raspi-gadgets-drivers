@@ -74,4 +74,5 @@ try:
 except KeyboardInterrupt:
     print("User press Ctrl+c ,exit;")
 finally:
-    cleanup()
+    cleanup(pin_btn)
+    cleanup(pin_led)

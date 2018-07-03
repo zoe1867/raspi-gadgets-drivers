@@ -10,6 +10,9 @@
 
 import RPi.GPIO as GPIO  
 import time  
+
+#P3B--10, PIZERO--4
+ZeroBitHighCnt = 10
   
 class DH11:
 
@@ -21,21 +24,17 @@ class DH11:
     def init(self):
         GPIO.setmode(GPIO.BCM)  
         GPIO.setup(self.channel, GPIO.OUT)  
-        time.sleep(0.5)
-        #dump read to avoid get_temp() feedback 0.
-        #self.get_temp()
 
     def get_temp(self):
         j = 0
-        data = []
-        GPIO.setmode(GPIO.BCM)  
-        GPIO.setup(self.channel, GPIO.OUT)  
-        time.sleep(0.5)  
+        data = [] 
         GPIO.output(self.channel, GPIO.LOW)  
         time.sleep(0.05)  
         GPIO.output(self.channel, GPIO.HIGH) 
         GPIO.setup(self.channel, GPIO.IN)  
   
+        while GPIO.input(self.channel) == GPIO.HIGH:
+            continue
         while GPIO.input(self.channel) == GPIO.LOW:  
             continue  
         while GPIO.input(self.channel) == GPIO.HIGH:  
@@ -49,7 +48,7 @@ class DH11:
                 k += 1  
                 if k > 100:  
                     break  
-            if k < 8:  
+            if k < ZeroBitHighCnt:  
                 data.append(0)  
             else:  
                 data.append(1)  
@@ -81,16 +80,15 @@ class DH11:
         else:  
             self.humidity = 0   
             self.temperature = 0
-        #GPIO.cleanup()  
 
     def close(self):
-        GPIO.cleanup()
+        GPIO.cleanup(self.channel)
 
 if __name__ == "__main__":
 
     try:
         dh11 = DH11()
-        #dh11.init()
+        dh11.init()
         dh11.get_temp()
         print("Temperature: %d"%dh11.temperature)
         print("humidity: %d"%dh11.humidity)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8-*-
 # author: Tiger
-# I2C interface & pin connection
+# (YwRobot) I2C interface & pin connection
 # NC ---(1)(2)---VCC
 # SDA---(3)(4)
 # SCL---(5)(6)

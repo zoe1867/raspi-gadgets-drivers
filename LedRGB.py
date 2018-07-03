@@ -61,7 +61,9 @@ class LED:
 	    GPIO.output(self.BCHN, GPIO.LOW)
 
     def close(self):
-        GPIO.cleanup()
+        GPIO.cleanup(self.RCHN)
+        GPIO.cleanup(self.GCHN)
+        GPIO.cleanup(self.BCHN)
 	    	    	 
 if __name__ == "__main__":
 

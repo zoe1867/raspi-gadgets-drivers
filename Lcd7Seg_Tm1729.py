@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8-*-
 # author: Tiger
-# I2C interface & pin connection
+# I2C interface& pin connection
 # VCC---(1)(2)
 # SDA---(3)(4)
 # SCL---(5)(6)
