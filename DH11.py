@@ -27,7 +27,8 @@ class DH11:
 
     def get_temp(self):
         j = 0
-        data = [] 
+        data = []
+        GPIO.setup(self.channel, GPIO.OUT) 
         GPIO.output(self.channel, GPIO.LOW)  
         time.sleep(0.05)  
         GPIO.output(self.channel, GPIO.HIGH) 
